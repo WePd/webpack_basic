@@ -6,6 +6,7 @@ module.exports = {
   output: {
     filename: "build.js", // 输出文件名
     path: path.resolve(__dirname, "dist"), //打包输出路径
+    // assetModuleFilename: "images/[name].[hash:4][ext]", // 设置asset资源的打包目录，这是一种类似全局的配置
   },
   module: {
     rules: [
@@ -42,11 +43,26 @@ module.exports = {
         // ],
         // 第三中方式
         // use: ["file-loader"], //但是要将图片作为模块导入
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "[name].[hash:8].[ext]", // 设置打包后的文件名和后缀
-            outputPath: "images", // 打包后的文件夹名
+        // use: {
+        //   loader: "file-loader",
+        //   options: {
+        //     name: "[name].[hash:8].[ext]", // 设置打包后的文件名和后缀
+        //     outputPath: "images", // 打包后的文件夹名
+        //   },
+        // },
+
+        // 第四种 使用asset
+        // type: "asset/resource", // 资源拷贝
+        // type: "asset/inline", // 转化为base64
+        // generator: {
+        //   // 依据不同的文件类型打包到不同的文件目录下
+        //   filename: "images/[name].[hash:4][ext]", //
+        // },
+
+        type: "asset", // 设置为asset既可以依据资源的大小选择是拷贝还是转化为base64
+        parser: {
+          dataUrlCondition: {
+            maxSize: 20 * 1024, // 依据这个大小设置
           },
         },
       },

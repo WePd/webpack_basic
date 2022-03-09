@@ -103,7 +103,34 @@
     </ul>
 
     <h3>资源模块的使用</h3>
-    <ul></ul>
+    <ul>
+      <li>
+        在webpack5中有一个新的模块叫做asset资源模块，利用了他之后就相当于代替了file-loader,
+        url-loader
+      </li>
+      <li>通过设置type属性来使用asset</li>
+      <li style="color: red">
+        type: 'asset/resource' ------> 相当于file-loader,对资源进行一份拷贝
+      </li>
+      <li style="color: red">type: 'asset/inline' -----> 相当于url-loader</li>
+      <li>type: 'asset/source -----> 相当于row-loader'</li>
+      <li style="color: red">
+        type: 'asset', 在之后再加一些配置进行资源体积的大小限制
+      </li>
+      <li style="color: red">
+        也可以自定义asset的打包目录， 通过再output中设置 assetModuleFilename:
+        "images/[name].[hash:4][ext]",
+        这是一种全局的配置，会将所有标记为asset的资源都打包到这个目录下
+      </li>
+      <li>
+        设置独立的打包文件：依据test的匹配打包到各自文件下，配置generator属性
+      </li>
+    </ul>
+
+    <h2>webpack插件的使用</h2>
+    <ul>
+      <li></li>
+    </ul>
     <script src="./dist/build.js"></script>
   </body>
 </html>
