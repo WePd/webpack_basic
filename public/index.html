@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webpack学习</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
     <ul>
@@ -129,8 +129,29 @@
 
     <h2>webpack插件的使用</h2>
     <ul>
-      <li></li>
+      babel的使用
+      <li>安装 @babel/core 这只是babel的核心，并不能进行语法的转化</li>
+      <li>
+        要继续安装完成特点功能的插件，但是这样做很麻烦，则可以安装@babel/preset-env,他是一些功能的集合
+      </li>
     </ul>
-    <script src="./dist/build.js"></script>
+    <h2>babel-loader的使用</h2>
+    <ul>
+      <li>安装babel-loader,配置rule</li>
+      <li>指定插件，详细配置在webpack.config.js</li>
+    </ul>
+    <h3>webpack-dev-server</h3>
+    <ul>
+      <li>
+        在package.json中配置"serve": "webpack serve --config webpack.config.js"
+      </li>
+      <li>
+        再利用了devserver之后发现并没有打包文件出现，这是因为它是在内存中处理的，远比本地读取要快
+      </li>
+    </ul>
+    <h3>热更新</h3>
+    <ul>
+      <li>在webpack.config.js中配置devServer:{hot: true}</li>
+    </ul>
   </body>
 </html>

@@ -1,4 +1,6 @@
 const path = require("path")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+var HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   mode: "development", // 配置模式
@@ -6,7 +8,7 @@ module.exports = {
   output: {
     filename: "build.js", // 输出文件名
     path: path.resolve(__dirname, "dist"), //打包输出路径
-    // assetModuleFilename: "images/[name].[hash:4][ext]", // 设置asset资源的打包目录，这是一种类似全局的配置
+    assetModuleFilename: "images/[name].[hash:4][ext]", // 设置asset资源的打包目录，这是一种类似全局的配置
   },
   module: {
     rules: [
@@ -66,6 +68,24 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+            },
+          },
+        ],
+      },
     ],
   },
+  plugins: [
+    new CleanWebpackPlugin(), // 配置每次打包自动清理上一次的打包文件
+    new HtmlWebpackPlugin({
+      title: "webpack-Learning",
+      template: "./public/index.html", // 用自己的模板
+    }),
+  ],
 }
